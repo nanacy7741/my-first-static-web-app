@@ -4,10 +4,6 @@
     },
     "routes": [
         {
-           "route": "/login",
-           "redirect": "/.auth/login/github"
-        },
-        {
            "route": "/admin/*",
            "allowedRoles": [
                "shirakawatest"
