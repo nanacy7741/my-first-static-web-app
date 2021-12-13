@@ -1,6 +1,9 @@
 {
     "routes": [
         {
+           "route": "/index.html"
+        },
+        {
            "route": "/admin/*",
            "allowedRoles": [
                "shirakawatest"
