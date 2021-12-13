@@ -2,8 +2,16 @@
     "navigationFallback": {
         "rewrite": "/index.html"
     },
-    {
-       "route": "/login",
-       "redirect": "/.auth/login/github"
-    }
+    "routes": [
+        {
+           "route": "/login",
+           "redirect": "/.auth/login/github"
+        },
+        {
+           "route": "/admin/*",
+           "allowedRoles": [
+               "shirakawatest"
+           ]
+        }
+    ]
 }
