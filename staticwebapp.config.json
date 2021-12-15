@@ -1,10 +1,53 @@
 {
-    "routes": [
-        {
-           "route": "/admin/*",
-           "allowedRoles": [
-               "shirakawatest"
-           ]
-        }
+  "networking": {
+    "allowedIpRanges": [
+      "AzureFrontDoor.Backend"
     ]
+  },
+  "forwardingGateway": {
+    "requiredHeaders": {
+      "X-Azure-FDID": "f5fd3e63-c1af-4699-b4a4-a871c97b527b"
+    },
+    "allowedForwardedHosts": [
+      "swafront.azurefd.net"
+    ]
+  },
+  "routes": [
+    {
+      "route": "/admin/*",
+      "allowedRoles": [
+        "shirakawatest"
+      ]
+    },
+    {
+      "route": "/authenticated/*",
+      "allowedRoles": [
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/login",
+      "rewrite": "/.auth/login/aad"
+    },
+    {
+      "route": "/.auth/login/twitter",
+      "statusCode": 404
+    },
+    {
+      "route": "/.auth/login/github",
+      "statusCode": 404
+    },
+    {
+      "route": "/logout",
+      "rewrite": "/.auth/logout"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/assets/*.{js,map}",
+      "/assets/*.{png,jpg,gif}",
+      "/assets/*"
+    ]
+  }
 }
